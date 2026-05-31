@@ -1,2 +1,122 @@
-# wedding-invitation-joyce
-invitation
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Augustine & Joyce Wedding Invitation</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:40px;
+    text-align:center;
+}
+
+button{
+    padding:12px 20px;
+    font-size:18px;
+    cursor:pointer;
+    border:none;
+    border-radius:6px;
+    background:#2f6b1f;
+    color:white;
+}
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.6);
+    animation:fadeIn 0.5s forwards;
+}
+
+.card{
+    background:white;
+    max-width:700px;
+    margin:5% auto;
+    padding:30px;
+    border-radius:12px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.2);
+    transform:translateY(-50px);
+    animation:slideDown 0.5s forwards;
+}
+
+h1{
+    color:#2f6b1f;
+}
+
+@keyframes slideDown{
+    from{
+        transform:translateY(-50px);
+        opacity:0;
+    }
+    to{
+        transform:translateY(0);
+        opacity:1;
+    }
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+    }
+    to{
+        opacity:1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<h2>Wedding Invitation</h2>
+<button onclick="openCard()">Open Invitation</button>
+
+<div class="modal" id="modal">
+    <div class="card">
+        <h1>Augustine & Joyce</h1>
+
+        <h3>Dear <span id="guest">Guest</span>,</h3>
+
+        <p>You are warmly invited to celebrate our wedding.</p>
+
+        <p><strong>Date:</strong> Saturday, 11th July 2026</p>
+        <p><strong>Time:</strong> 2:00 PM</p>
+        <p><strong>Venue:</strong> Amys Events, Lusaka Chalala</p>
+
+        <p><strong>Gift Contribution:</strong> K500</p>
+
+        <p><strong>RSVP:</strong> +260 97 9754012</p>
+
+        <p><em>Strictly 1 (one) person per card.</em></p>
+
+        <button onclick="closeCard()">Close</button>
+    </div>
+</div>
+
+<script>
+const params = new URLSearchParams(window.location.search);
+document.getElementById("guest").textContent =
+params.get("guest") || "Guest";
+
+function openCard() {
+    document.getElementById("modal").style.display = "block";
+}
+
+function closeCard() {
+    document.getElementById("modal").style.display = "none";
+}
+
+window.onload = openCard;
+
+document.getElementById("modal").addEventListener("click", function(e){
+    if(e.target === this){
+        closeCard();
+    }
+});
+</script>
+
+</body>
+</html>
